@@ -34,6 +34,9 @@ namespace Chapter2
                 /*Note we could have nested call to the same function and will see the different abc order in the output */
                 );
 
+            //call comment method
+            CommentAndWhiteSpaces.myDelimitedCommnet();
+
         }
     }
 }
