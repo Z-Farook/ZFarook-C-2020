@@ -8,9 +8,9 @@ namespace Chapter2
         static void Main(string[] args)
         {
             /*to get dimmed code working do: */
-            //#if flase 
-            //  to:
-#if true
+#if flase
+//  to:
+//#if true
             //call to some variables 
             variablesBasics.someVariablePrinting();
             //call to some statements
