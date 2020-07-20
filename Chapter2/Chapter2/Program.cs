@@ -8,9 +8,11 @@ namespace Chapter2
         static void Main(string[] args)
         {
             /*to get dimmed code working do: */
+
 #if flase
 //  to:
 //#if true
+
             //call to some variables 
             variablesBasics.someVariablePrinting();
             //call to some statements
@@ -37,9 +39,15 @@ namespace Chapter2
                 seeWatIsTheOrderOfEvaluation("d", 1)
                 /*Note we could have nested call to the same function and will see the different abc order in the output */
                 );
-
             //call comment method
             CommentAndWhiteSpaces.myDelimitedCommnet();
+#endif
+
+            //call to conditional debugging method
+            PreprocessingDirectives.compilationWithCondition();
+
+            /* Call the method annotated with: [System.Diagnostics.Conditional("DEBUG")]*/
+            PreprocessingDirectives.ShowDebugInfo();
 
         }
     }
