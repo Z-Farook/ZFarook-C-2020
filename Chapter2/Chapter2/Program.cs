@@ -43,12 +43,24 @@ namespace Chapter2
             CommentAndWhiteSpaces.myDelimitedCommnet();
 #endif
 
+#if flase
+//  to:
+//#if true
             //call to conditional debugging method
             PreprocessingDirectives.compilationWithCondition();
 
             /* Call the method annotated with: [System.Diagnostics.Conditional("DEBUG")]*/
             PreprocessingDirectives.ShowDebugInfo();
+#endif
+            #region Numeric conversion methods region
+            NumericTypeConversion.IntToDouble();
+            NumericTypeConversion.IntentionalOverflow();
+            NumericTypeConversion.CheckedExpressions();
+            #endregion
 
+            #region Biginteger method call region
+            BigIntegerUse.PrintBigInteger();
+            #endregion
         }
     }
 }
