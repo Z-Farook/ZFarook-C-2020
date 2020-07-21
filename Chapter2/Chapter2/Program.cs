@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Security.Cryptography.X509Certificates;
-
+using Chapter2;
 namespace Chapter2
 {
     class Program
@@ -59,7 +60,18 @@ namespace Chapter2
             #endregion
 
             #region Biginteger method call region
+#if fale
+
             BigIntegerUse.PrintBigInteger();
+#endif
+            #endregion
+
+            #region string and char region
+            StringsAndCharacters.CharAndStringDiff();
+            StringsAndCharacters.StringExpression();
+            StringsAndCharacters.StringInterpoltationMgic();
+            StringsAndCharacters.FormateTheFloatPointsUsingPlaceholdersInInterpoltation();
+            StringsAndCharacters.CustomStringFormatingUsingStringFomatable();
             #endregion
         }
     }
