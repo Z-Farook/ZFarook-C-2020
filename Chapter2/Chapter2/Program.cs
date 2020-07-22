@@ -10,7 +10,7 @@ namespace Chapter2
         {
             /*to get dimmed code working do: */
 
-#if flase
+#if false
 //  to:
 //#if true
 
@@ -44,7 +44,7 @@ namespace Chapter2
             CommentAndWhiteSpaces.myDelimitedCommnet();
 #endif
 
-#if flase
+#if false
 //  to:
 //#if true
             //call to conditional debugging method
@@ -54,9 +54,12 @@ namespace Chapter2
             PreprocessingDirectives.ShowDebugInfo();
 #endif
             #region Numeric conversion methods region
+#if false
+
             NumericTypeConversion.IntToDouble();
             NumericTypeConversion.IntentionalOverflow();
             NumericTypeConversion.CheckedExpressions();
+#endif
             #endregion
 
             #region Biginteger method call region
@@ -67,11 +70,31 @@ namespace Chapter2
             #endregion
 
             #region string and char region
+#if false
             StringsAndCharacters.CharAndStringDiff();
             StringsAndCharacters.StringExpression();
             StringsAndCharacters.StringInterpoltationMgic();
             StringsAndCharacters.FormateTheFloatPointsUsingPlaceholdersInInterpoltation();
             StringsAndCharacters.CustomStringFormatingUsingStringFomatable();
+#endif
+            #endregion
+
+            #region Region of dynamic 
+            var staticType = new MyDynamicType();
+            dynamic dType = new MyDynamicType();
+
+            //staticType.MethodX("this method doesn't expect any args and is statically typed so you see the error right away!");
+
+            //turn the next line to if true to see the error 
+#if false
+            dType.MethodX("I will work now, because you disabled the static type-checking ;( I have surprise at runtime");
+            dType = "some wrong stuff"; /*not how badly we changed the type form MyDynamicType -> simple STRING*/
+#endif
+
+#if false
+            var printDynamics = new MyDynamicType();
+            printDynamics.PrintSomeDynamics();
+#endif
             #endregion
         }
     }
