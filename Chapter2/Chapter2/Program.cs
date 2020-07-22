@@ -79,6 +79,10 @@ namespace Chapter2
 #endif
             #endregion
 
+            #region Tuple's region
+            Tuples.DeconstructTuple();
+            #endregion 
+
             #region Region of dynamic 
             var staticType = new MyDynamicType();
             dynamic dType = new MyDynamicType();
