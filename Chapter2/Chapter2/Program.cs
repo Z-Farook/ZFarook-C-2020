@@ -61,18 +61,24 @@ namespace Chapter2
 
             #region Biginteger method call region
 #if fale
-
             BigIntegerUse.PrintBigInteger();
 #endif
             #endregion
 
             #region string and char region
+#if fale
             StringsAndCharacters.CharAndStringDiff();
             StringsAndCharacters.StringExpression();
             StringsAndCharacters.StringInterpoltationMgic();
             StringsAndCharacters.FormateTheFloatPointsUsingPlaceholdersInInterpoltation();
             StringsAndCharacters.CustomStringFormatingUsingStringFomatable();
+#endif
             #endregion
+
+            #region Tuple's region
+            Tuples.DeconstructTuple();
+            #endregion
+
         }
     }
 }
