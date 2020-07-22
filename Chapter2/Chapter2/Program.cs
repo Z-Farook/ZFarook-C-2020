@@ -63,7 +63,7 @@ namespace Chapter2
             #endregion
 
             #region Biginteger method call region
-#if fale
+#if false
 
             BigIntegerUse.PrintBigInteger();
 #endif
