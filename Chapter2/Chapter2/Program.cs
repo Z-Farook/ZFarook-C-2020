@@ -80,8 +80,10 @@ namespace Chapter2
             #endregion
 
             #region Tuple's region
+#if false
             Tuples.DeconstructTuple();
-            #endregion 
+#endif
+            #endregion
 
             #region Region of dynamic 
             var staticType = new MyDynamicType();
@@ -98,6 +100,21 @@ namespace Chapter2
 #if false
             var printDynamics = new MyDynamicType();
             printDynamics.PrintSomeDynamics();
+#endif
+            #endregion
+
+            #region
+#if false
+            var x = "Random string";
+            CSharpOperators.AndOrOperatorCheking(CSharpOperators.x);
+            CSharpOperators.AndOrOperatorCheking(null);
+            CSharpOperators.ModernCheckOFNullWith_NullCconditiona("We are advanced now");
+            CSharpOperators.UsingTrinarOperator("We are advanced now");
+            CSharpOperators.ExploitedTrinaryForNullException(null);
+            CSharpOperators.ExploitedTrinaryForNullException("We are advanced now");
+            CSharpOperators.Combination_NullConditionalAndNullCoalescing(null);
+            CSharpOperators.Combination_NullConditionalAndNullCoalescing(x);
+            CSharpOperators.ConditionalOperatorAsArgument(true);
 #endif
             #endregion
         }
