@@ -10,6 +10,7 @@ namespace Chapter2
 {
     internal static class PreprocessingDirectives
     {
+#pragma warning disable
         //#if, #elif, #else, and #endif
 
         #region  conditional compilation code region 
