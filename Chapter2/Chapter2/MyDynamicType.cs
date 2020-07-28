@@ -6,6 +6,7 @@ namespace Chapter2
 {
     internal class MyDynamicType
     {
+#pragma warning disable
         public string field1 { get; set; }
         public string field2 { get; set; }
         public dynamic dyn { get; set; }
