@@ -9,6 +9,7 @@ namespace Chapter2
 {
     internal static class StatementsAndExpressions
     {
+#pragma warning disable
         internal static void myStatements()
         {
             int a = 74;
