@@ -12,7 +12,6 @@ namespace Chapter2
         static void Main(string[] args)
         {
             var newLine = "\n";
-            Action<object> Cwr = Console.WriteLine;
             /*to get dimmed code working do: */
 #if false
 //  to:
@@ -163,32 +162,6 @@ namespace Chapter2
             #endregion
 
 
-            #region For C# patterns
-#if true
-            Cwr(newLine);
-            CSharpPatterns.PatternWithTupleSwitchCase((0, 2));
-            CSharpPatterns.CheckTheArgTypeAndCallAMethod(3);
-            CSharpPatterns.CheckTheArgTypeAndCallAMethod("S");
-            CSharpPatterns.CheckTheArgTypeAndCallAMethod(0.0);
-            /*this causes the var x var y CASR*/
-            CSharpPatterns.MoreThanOneKinfOfPositionalPattern(("0", 0));
-            /*cause the 1st two switch statement*/
-            CSharpPatterns.Propertypatterns((""));
-            /*cause the last switch statement*/
-            CSharpPatterns.Propertypatterns(("0"));
-            CSharpPatterns.ConditionalPatternUsigWhen((5, 4));
-            CSharpPatterns.SwitchStatementWithoutExpression(4);
-            CSharpPatterns.SwitchStatementWithoutExpression((4, 4));
-            Cwr(CSharpPatterns.SwitchStatementWithExpression(4));
-            Cwr(CSharpPatterns.SwitchStatementWithExpression((4, 4)));
-            CSharpPatterns.BooleanPatternWithIs((1, 2));
-            CSharpPatterns.UseTheVariableOfBoolPattern((",", 1));
-            CSharpPatterns.UseTheVariableOfBoolPattern((5, 1));
-            CSharpPatterns.ConditionalPatternWithOutUsingWhenKeyWord((",", 1));
-            CSharpPatterns.ConditionalPatternWithOutUsingWhenKeyWord((5, 1));
-            Cwr(newLine);
-#endif
-            #endregion
         }
     }
 }
