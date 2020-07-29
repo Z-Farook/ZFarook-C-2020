@@ -38,10 +38,18 @@ namespace Classes
             var pnum = pNumber2._phoneNumber = 123;
             /*Get the constant filed from STRUCT*/
             var lMode = PersonPhone2.LearningMode;
-            var res = PersonPhone2.CountryAndPhone(country, pnum, lMode );
-#endif
-            #endregion
+            var res = PersonPhone2.CountryAndPhone(country, pnum, lMode);
 
+#endif
+            /*Makes the static constructor execute */
+            ClassWithReadOnlyFields.getTheReadOnlyField();
+
+            /*This calls the constructor with one parameter*/
+            ClassWithReadOnlyFields classWithReadOnlyFields = new ClassWithReadOnlyFields(500);
+            /*printing the value of the assignment above*/
+            ClassWithReadOnlyFields.TheReadOnlyFieldDefinedTroughConstructor(classWithReadOnlyFields);
+
+            #endregion
             write("");
         }
     }
