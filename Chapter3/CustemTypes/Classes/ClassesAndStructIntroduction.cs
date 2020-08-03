@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Classes
 {
-    internal class ClassesIntroduction
+    internal class ClassesAndStructIntroduction
     {
 #pragma warning  disable
         /*Fields*/
@@ -25,11 +25,11 @@ namespace Classes
             set { myVar = value; }
         }
 
-        public ClassesIntroduction()
+        public ClassesAndStructIntroduction()
         {
         }
 
-        public ClassesIntroduction(string firstName, string lastName)
+        public ClassesAndStructIntroduction(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
