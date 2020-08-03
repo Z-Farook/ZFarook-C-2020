@@ -114,32 +114,48 @@ namespace Classes
             m1.ExpressionBodiedMethod(m1, 10);
 
 #endif
+            #endregion
 
             #region For C# method overloading and invocation
-#if true
-            //MethodOverloding.MLoadingOne();
-            //MethodOverloding.MLoadingTwo(1);
-            //MethodOverloding.MLoadingThree(12, 23);
-            ///*This will be assigned as the parameters are defined in the function so: l= 2 m12*/
-            //MethodOverloding.MForNamedArgInvocation(2, 12);
+#if false
+            MethodOverloding.MLoadingOne();
+            MethodOverloding.MLoadingTwo(1);
+            MethodOverloding.MLoadingThree(12, 23);
 
-            ///*This will be HOWEVER ALSO ASSIGNED AS THE PARAMETERS are defined in the function
-            //  so regardless the order given here: m: 2, l: 12*/
-            //MethodOverloding.MForNamedArgInvocation(m: 2, l: 12);
-            ///*non-trailing named arguments are only allowed when the name and the position 
-            // * result in finding the same corresponding parameter. In other words if we omit the name of some parameters then
-            // the ORDER IN THE INVOCATION MUST MATCH WITH THAT OF ORIGINAL FOUND IN THE DEFINITION of the method*/
-            //MethodOverloding.MForNamedArgInvocation(l: 32, 113);
+            /*This will be assigned as the parameters are defined in the function so: l= 2 m12*/
+            MethodOverloding.MForNamedArgInvocation(2, 12);
+
+            /*This will be HOWEVER ALSO ASSIGNED AS THE PARAMETERS are defined in the function
+              so regardless the order given here: m: 2, l: 12*/
+            MethodOverloding.MForNamedArgInvocation(m: 2, l: 12);
+
+            /*non-trailing named arguments are only allowed when the name and the position 
+              result in finding the same corresponding parameter.In other words if we omit the name of some parameters then
+              the ORDER IN THE INVOCATION MUST MATCH WITH THAT OF ORIGINAL FOUND IN THE DEFINITION of the method */
+            MethodOverloding.MForNamedArgInvocation(l: 32, 113);
 
             MethodOverloding.MWithOptionalParameter(2, 3);
             MethodOverloding.MWithOptionalParameter(4);
 
-
-
-
+            /*The best time to use the NAMED ARGUMENT is when the optional are being passed*/
+            MethodOverloding.MWihtMultipleOptionalParams(w: 12, q: 8);
+            MethodOverloding.MUsingOptinalPatametersWithKeyWord(8, 9, 10, "TEst");
 #endif
             #endregion
 
+            #region For C# Constructors
+#if true
+            var con = new ClassForConstructorPurpose(50);
+            write(con.Number);
+            ClassWithPrivateConstructor.Name("The initialization with private constructor");
+
+            var ConInitializer = new ClassForConstructerInitializer("Proton Persona");
+            var res = ConInitializer.TestConInitializer();
+
+            /*Remember!, static constructor does not have any access modifiers and It’s never called explicitly*/
+            write(ClassWithStaticConstructor.MyProperty);
+    
+#endif
             #endregion
 
             write("");

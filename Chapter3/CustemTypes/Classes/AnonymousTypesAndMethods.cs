@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Classes
@@ -22,7 +23,7 @@ namespace Classes
         }
         public void ExpressionBodiedMethod(WorkingWithMethod wm, int x) => Console.WriteLine("MyProperty2: " + (wm.MyProperty2 = x).ToString());
     }
-    
+
     //Note this class contains multiple things for different topics
     internal class MethodOverloding
     {
@@ -46,11 +47,26 @@ namespace Classes
             Console.WriteLine($"L is : {l} and M is: {m}");
         }
 
-        public static void MWithOptionalParameter(int u , int t =2 )
+        public static void MWithOptionalParameter(int u, int t = 2)
         {
 
-            Console.WriteLine($"Square of u: {u} and t: {t} is: {u* t}");
+            Console.WriteLine($"Square of u: {u} and t: {t} is: {u * t}");
+        }
+
+        public static void MWihtMultipleOptionalParams(int w, int e = 12, int r = 10, int q = 1)
+        {
+
+            Console.WriteLine($"The w: {w} is not optional parameters and all the following are if the value" +
+                $" are: *int e= 12, int r= 10, int q = 1* \nSo, what are the given arguments: {e} {r} {q} ");
+        }
+        //Better way to use the optional parameters if there is more than one is to use PARAMS KEY WORD!
+        public static void MUsingOptinalPatametersWithKeyWord(params object[] arg)
+        {
+            foreach (var item in arg)
+            {
+
+                Console.WriteLine($"{item}");
+            }
         }
     }
-
 }
