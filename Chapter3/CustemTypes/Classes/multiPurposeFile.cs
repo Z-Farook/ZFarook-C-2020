@@ -124,22 +124,29 @@ namespace Classes
     internal struct StructForInParameterTesting
     {
         public int MutableField;
+        
+        /*Define a method using the in keyword makes the field read-only*/
+        public static void TestMethodForInPara(in StructForInParameterTesting param)
+        {
+            //param.MutableField = 69;// does not compile - read only variable
+            Console.WriteLine(param.MutableField); //reading is allowed: that 12
+        }
     }
 
     /* in is not very desired with class type but here is an example!
-     * When using the in modifier with reference types, you can change the content of the variable,BUT NOT THE VARIABLE ITSELf*/
+     
+     * When using the in modifier with reference types, you can change the content of the variable,BUT NOT THE VARIABLE ITSELF*/
     internal class ClassForInParameterTesting
     {
         public int MyProperty { get; set; }
 
-        static void TestMethodForInPara2(in ClassForInParameterTesting param)
+        public static void TestMethodForInPara2(in ClassForInParameterTesting param)
         {
             //assignment allowed even the in keyword is used because we are using the reference type
-            param.MyProperty = 2;
-            
-            //so what should i do here to see the behavior defined above?
-
-            Console.WriteLine();
+            var m = param.MyProperty = 2;
+            Console.WriteLine(m);
+            //param = new ClassForInParameterTesting(); /*So,change the content of the variable,BUT NOT THE VARIABLE ITSELf*/
+            return;
         }
     }
 

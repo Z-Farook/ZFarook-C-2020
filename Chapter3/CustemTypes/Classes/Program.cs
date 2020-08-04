@@ -229,29 +229,14 @@ namespace Classes
 
             #region For C# in Parameter
 #if true
-            var xForInParameter = new StructForInParameterTesting();
-            /*This is being allowed because we are not use the in keyword yet!*/
-            xForInParameter.MutableField = 12;
-
-            /*Define a method using the keyword makes the field read-only*/
-
-            static void TestMethodForInPara(in StructForInParameterTesting param)
-            {
-                //param.MutableField = 69;// does not compile - readonly variable
-                Console.WriteLine(param.MutableField); //reading is allowed: that 12
-            }
-            TestMethodForInPara(xForInParameter);
+            //var xForInParameter = new StructForInParameterTesting();
+            ///*This is being allowed because we are not use the in keyword yet!*/
+            //xForInParameter.MutableField = 12;
+            //StructForInParameterTesting.TestMethodForInPara(xForInParameter);
 
             var xForInParameter2 = new ClassForInParameterTesting();
             xForInParameter2.MyProperty = 1;
-
-
-             static void TestMethodForInPara2(in ClassForInParameterTesting param)
-            {
-                //assignment allowed even the in keyword is used because we are using the reference type
-               var g = param.MyProperty = 2;
-                Console.WriteLine();
-            }
+            ClassForInParameterTesting.TestMethodForInPara2(xForInParameter2);
 
 #endif
             #endregion
