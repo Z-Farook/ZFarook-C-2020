@@ -215,14 +215,43 @@ namespace Classes
             #endregion
 
             #region For C# Out keyword
-#if true
+#if false
             /*This will not do the work if the use will pass a string instead of int*/
             //ClassForOutParameters.GetInputFromConsoleAndHandelNoException();
-            ClassForOutParameters.GetInputAndHandelExceptionWithOut();
-            var theUserInput = Console.ReadLine();
-            ClassForOutParameters.OutKewWordAdvancedUse(theUserInput);
+            //ClassForOutParameters.GetInputAndHandelExceptionWithOut();
+            //var theUserInput = Console.ReadLine();
+            //ClassForOutParameters.OutKewWordAdvancedUse(theUserInput);
+           var ri =  ClassForOutParameters.Divide(10, 3, out int kk);
+            Console.WriteLine(ri);
+            Console.WriteLine(kk);
+#endif
+            #endregion
+
+            #region For C# in Parameter
+#if true
+            var xForInParameter = new StructForInParameterTesting();
+            /*This is being allowed because we are not use the in keyword yet!*/
+            xForInParameter.MutableField = 12;
+
+            /*Define a method using the keyword makes the field read-only*/
+
+            static void TestMethodForInPara(in StructForInParameterTesting param)
+            {
+                //param.MutableField = 69;// does not compile - readonly variable
+                Console.WriteLine(param.MutableField); //reading is allowed: that 12
+            }
+            TestMethodForInPara(xForInParameter);
+
+            var xForInParameter2 = new ClassForInParameterTesting();
+            xForInParameter2.MyProperty = 1;
 
 
+             static void TestMethodForInPara2(in ClassForInParameterTesting param)
+            {
+                //assignment allowed even the in keyword is used because we are using the reference type
+               var g = param.MyProperty = 2;
+                Console.WriteLine();
+            }
 
 #endif
             #endregion

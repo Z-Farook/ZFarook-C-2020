@@ -105,11 +105,43 @@ namespace Classes
         /*Not the TrParse returns Boolean and it is built method from dot itself*/
         public static void OutKewWordAdvancedUse(string consoleInput) => Console.WriteLine(
             int.TryParse(consoleInput, out int theParsedConsResult) ?
-            $"you passed: {consoleInput}" : $" gives us number not a string like: {consoleInput}");
+            $"you passed: {theParsedConsResult}" : $" gives us number not a string like: {consoleInput}");
+
+        /*Note: out modifier allows returning values specified with the arguments*/
+        public static float Divide(int x, int y, out int remainder)
+        {
+            remainder = x % y;
+            return (float)x / y;
+        }
+    }
+#endif
+    #endregion
+
+    #region For C# in parameters!
+#if true
+    /*The in modifier is mainly used with value types. However, you can use it with reference types as well.*/
+
+    internal struct StructForInParameterTesting
+    {
+        public int MutableField;
     }
 
+    /* in is not very desired with class type but here is an example!
+     * When using the in modifier with reference types, you can change the content of the variable,BUT NOT THE VARIABLE ITSELf*/
+    internal class ClassForInParameterTesting
+    {
+        public int MyProperty { get; set; }
 
+        static void TestMethodForInPara2(in ClassForInParameterTesting param)
+        {
+            //assignment allowed even the in keyword is used because we are using the reference type
+            param.MyProperty = 2;
+            
+            //so what should i do here to see the behavior defined above?
 
+            Console.WriteLine();
+        }
+    }
 
 #endif
     #endregion
