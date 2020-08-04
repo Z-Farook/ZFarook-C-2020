@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace Classes
 {
@@ -144,7 +145,7 @@ namespace Classes
             #endregion
 
             #region For C# Constructors
-#if true
+#if false
             var con = new ClassForConstructorPurpose(50);
             write(con.Number);
             ClassWithPrivateConstructor.Name("The initialization with private constructor");
@@ -155,6 +156,74 @@ namespace Classes
             /*Remember!, static constructor does not have any access modifiers and It’s never called explicitly*/
             write(ClassWithStaticConstructor.MyProperty);
     
+#endif
+            #endregion
+
+            #region For C# Struct
+#if false
+            var sc = new School("Hr", "Rotterdam");
+            sc.GetSchoolAndCity();
+            /*To avoid some performance issue we can use the REF keyword when passing an struct to an function*/
+            sc.GetSchoolAndCity(ref sc);
+            ReadOnlyStruct rds = new ReadOnlyStruct(true, true);
+            rds.CanWeUndoTheRain();
+            ExampleTypeRefStruct refStruct = new ExampleTypeRefStruct(12);
+            refStruct.TheBarkingDog();
+            write(refStruct.MyProperty);
+            sc = refStruct;/*this cannot be done since refStruct lives on stack and this assignment is on the heap*/
+            refStruct.ToString(); this cannot be done either
+#endif
+            #endregion
+
+            #region For C# PASSING PARAMETERS BY VALUE AND BY REFERENCE
+#if false
+            ValueType vType = new ValueType { ThePropToBeNotChanged = 1 };
+            var res = vType.MethodWithValTypeRef(vType);
+            /*Check if the property got the value changed*/
+            if (vType.ThePropToBeNotChanged == res)
+                write("Yes, the prop was changed!");
+            else write("No, the vType.ThePropToBeNotChanged wasn't changed");
+
+            /*Using the ref keyword within struct type*/
+            ValueType2 vType2 = new ValueType2 { ThePropToBeNotChanged = 1 };
+            var res2 = vType2.MethodWithValTypeRef(ref vType2);
+            /*Check if the property got the value changed*/
+            if (vType2.ThePropToBeNotChanged == res2)
+                write("Yes, the prop was changed *even* it was a value type! You got thank to the REF KEWORD");
+            else write("No, the vType.ThePropToBeNotChanged wasn't changed");
+
+            RefType refType = new RefType { ThePropToBeNotChanged = 11 };
+            var res3 = refType.MethodWithValTypeRef(refType);
+            /*Check if the property got the value changed*/
+            if (refType.ThePropToBeNotChanged == res)
+                write("Yes, the refType.ThePropToBeNotChanged was changed!");
+            else write("No, the ThePropToBeNotChanged wasn't changed");
+
+            /*Without ref keyword, when not careful the can be data loss. The garbage collection in this case*/
+            var refWithinClass = new UsingRefKeyWordWithClass { X = "The initial value is: 1" };
+            UsingRefKeyWordWithClass.ChangeA(refWithinClass);
+            write(refWithinClass.X);
+
+            /*Using REF keyword within class type TO AVOID the garbage collection in this case*/
+            var refWithinClass2 = new UsingRefKeyWordWithClass2 { X = "The initial value is: 1" };
+            UsingRefKeyWordWithClass2.ChangeA(ref refWithinClass2); /*Note the use of ref*/
+            write(refWithinClass2.X);
+
+
+
+#endif
+            #endregion
+
+            #region For C# Out keyword
+#if true
+            /*This will not do the work if the use will pass a string instead of int*/
+            //ClassForOutParameters.GetInputFromConsoleAndHandelNoException();
+            ClassForOutParameters.GetInputAndHandelExceptionWithOut();
+            var theUserInput = Console.ReadLine();
+            ClassForOutParameters.OutKewWordAdvancedUse(theUserInput);
+
+
+
 #endif
             #endregion
 
