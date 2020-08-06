@@ -36,7 +36,6 @@ namespace Classes
         }
     }
 
-
     public class RefType
     {
         public int ThePropToBeNotChanged { get; set; }
@@ -124,7 +123,7 @@ namespace Classes
     internal struct StructForInParameterTesting
     {
         public int MutableField;
-        
+
         /*Define a method using the in keyword makes the field read-only*/
         public static void TestMethodForInPara(in StructForInParameterTesting param)
         {
@@ -133,7 +132,7 @@ namespace Classes
         }
     }
 
-    /* in is not very desired with class type but here is an example!
+    /* "in" is not very desired with class type (reference type) but here is an example!
      
      * When using the in modifier with reference types, you can change the content of the variable,BUT NOT THE VARIABLE ITSELF*/
     internal class ClassForInParameterTesting
@@ -153,5 +152,93 @@ namespace Classes
 #endif
     #endregion
 
+    #region For C# ENUM TYPES
+#if true
+
+    public enum KFCProduct
+    {
+        chicken,
+        milkshake,
+        cola,
+    }
+    /*Changing the default type from INT to SHORT*/
+    public enum KFCProductWithIndexStartingAt1 : short
+    {
+        chicken = 1,
+        milkshake = 2,
+        cola = 3,
+    }
+
+    [Flags]
+    public enum DaysOfWeek
+    {
+        /*        Monday,
+                Tuesday,
+                Wednesday,
+                Thursday,
+                Friday,
+                Saturday,
+                Sunday,
+                Weekend = Saturday | Sunday,
+                Workday,
+                AllWeek = Workday | Weekend*/
+        Monday = 0x1,
+        Tuesday = 0x2,
+        Wednesday = 0x4,
+        Thursday = 0x8,
+        Friday = 0x10,
+        Saturday = 0x20,
+        Sunday = 0x40,
+        Weekend = Saturday | Sunday,
+        Workday = 0x1f,
+        AllWeek = Workday | Weekend
+    }
+
+    [Flags]
+    public enum SingleHue : short
+    {
+        None = 0,
+        Black = 1,
+        Red = 2,
+        Green = 4,
+        Blue = 8
+    };
+
+#endif
+    #endregion
+
+    #region For C# Partial types/Classes
+#if true
+
+    internal partial class ClassWithPartialKeyWord
+    {
+        public void MethodOne() { Console.WriteLine("I am the method ONE from the partial class"); }
+    }
+
+    internal partial class ClassWithPartialFuncion
+    {
+        //partial method is called.
+        public static void HelperForPartialMCall() => TPartialMethod(); 
+        
+        /*Note when there is no implementation of this method the compiler omits the invocation 
+         *and when the is body defined for this method in any file then it goes to fire that one*/
+        static partial void TPartialMethod();
+
+    }
+
+   internal static partial class csharp
+    {
+        static partial void Show();
+
+        public static void disp()
+        {
+            //partial method is called.
+            Show();
+        }
+    }
+
+
+#endif
+    #endregion
 
 }

@@ -228,11 +228,11 @@ namespace Classes
             #endregion
 
             #region For C# in Parameter
-#if true
-            //var xForInParameter = new StructForInParameterTesting();
-            ///*This is being allowed because we are not use the in keyword yet!*/
-            //xForInParameter.MutableField = 12;
-            //StructForInParameterTesting.TestMethodForInPara(xForInParameter);
+#if false
+            var xForInParameter = new StructForInParameterTesting();
+            /*This is being allowed because we are not use the in keyword yet!*/
+            xForInParameter.MutableField = 12;
+            StructForInParameterTesting.TestMethodForInPara(xForInParameter);
 
             var xForInParameter2 = new ClassForInParameterTesting();
             xForInParameter2.MyProperty = 1;
@@ -240,6 +240,101 @@ namespace Classes
 
 #endif
             #endregion
+
+            #region For C# null able types
+#if false
+
+            int b = 3;
+            int? v = null;
+            int h = v.HasValue ? v.Value + b : b - 1;
+            int h1 = v ?? b - 1;/*using null coalescing*/
+            if (v != null)
+                write($"V was:{(v ?? v.Value)}");
+            else
+                write($"V was: NULL so the left side is evaluated: b - 1 ={b - 1} ");
+            
+            string? l = null;
+            string j = (string)l ?? "";/*Null coalescing: If l != null than the value else the empty string*/
+
+            int x1 = 1;
+            int? x2 = null;
+            int? x3 = x2;
+            int x4 = x3 ?? 0;
+            int x5 = x3.HasValue ? x3.Value : -1;
+
+
+
+#endif
+            #endregion
+
+            #region For C# Enum Type
+#if false
+            KFCProduct chick = KFCProduct.chicken;
+
+            KFCProduct i = (KFCProduct)0; /*Cast a NUMBER to an ENUMERATION value. */
+            Console.WriteLine(i);/*The i will print the first named constants: chicken*/
+
+            int j = (int)chick;/*Cast a ENUMERATION  to an NUMBER value*/
+            Console.WriteLine(j); /*The j will print the value of the first named constants: chicken*/
+            DaysOfWeek Di = (DaysOfWeek)3;
+            Console.WriteLine(Di);
+
+            KFCProduct enumMemberChicken;
+            if (Enum.TryParse<KFCProduct>("chicken", out enumMemberChicken))
+            {
+                Console.WriteLine($"successfully parse enumMemberChicken: {enumMemberChicken}");
+            }
+            /*Prints all the names of constants*/
+            foreach (string itmes in Enum.GetNames(typeof(KFCProduct)))
+            {
+                Console.WriteLine("\n" + itmes);
+            }
+
+            /*Prints all the value (indexes) of constants*/
+            foreach (int itmes in Enum.GetValues(typeof(KFCProduct)))
+            {
+                Console.WriteLine("\n" + itmes);
+            }
+
+            Console.WriteLine(
+           "All possible combinations of values with FlagsAttribute:");
+            for (int val = 0; val <= 16; val++)
+                Console.WriteLine("{0,5} - {1}", val, (SingleHue)val);
+#if false
+            foreach (int val in Enum.GetValues(typeof(DaysOfWeek)))
+            {
+                Console.WriteLine(val + ": " + (DayOfWeek)val);
+            }
+            var myEnumMemberCount = Enum.GetNames(typeof(DaysOfWeek)).Length;
+            Console.WriteLine(myEnumMemberCount);
+
+            DaysOfWeek mondayAndWednesday = DaysOfWeek.Monday | DaysOfWeek.Wednesday;
+            Console.WriteLine(mondayAndWednesday);
+            
+            DaysOfWeek meetingDays = DaysOfWeek.Monday & DaysOfWeek.Sunday;
+            Console.WriteLine(meetingDays);
+
+            DaysOfWeek workingFromHomeDays = DaysOfWeek.Monday | DaysOfWeek.Weekend;
+            Console.WriteLine(workingFromHomeDays);
+
+            Console.WriteLine($"Join a meeting by phone on {meetingDays & workingFromHomeDays}");
+
+            bool isMeetingOnTuesday = (meetingDays & DaysOfWeek.Sunday) == DaysOfWeek.Monday;
+            Console.WriteLine($"Is there a meeting on Tuesday: {isMeetingOnTuesday}");
+#endif
+#endif
+            #endregion
+
+            #region For C# Partial use within classes
+#if false
+            ClassWithPartialKeyWord classWithPar = new ClassWithPartialKeyWord();
+            classWithPar.MethodOne();
+            classWithPar.MethodTwo();
+            ClassWithPartialFuncion.HelperForPartialMCall();
+            csharp.disp();
+#endif
+            #endregion
+
 
             write("");
         }
