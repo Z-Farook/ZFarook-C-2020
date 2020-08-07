@@ -335,7 +335,48 @@ namespace Classes
 #endif
             #endregion
 
+            #region For C# Extension methods
+#if false
+            /*The following two lines are equals */
+            10.TheExtensionMethPowerOf();
+            ExtensionMethodsClass.TheExtensionMethPowerOf(10);
+#endif
+            #endregion
 
+            #region For C# The object class's methods
+#if true
+            var t = new ClassForConstructorPurpose(12);
+            Console.WriteLine(t.Number.ToString());
+            Console.WriteLine(t.GetHashCode());
+            var t1 = new ClassForConstructorPurpose(11);
+            Console.WriteLine(t.Equals(t));
+            Console.WriteLine(t.Equals(t1));
+            var cForFinalize = new ClassForFinalizer();
+            cForFinalize.ShowDuration();
+            Console.WriteLine(t.GetType());
+
+            // Create an instance of Person and assign values to its fields.
+            PersonForClone p1 = new PersonForClone();
+            p1.Age = 42;
+            p1.Name = "Sam";
+            p1.IdInfo = new IdInfo(6565);
+            // Perform a shallow copy of p1 and assign it to p2.
+            //PersonForClone p2 = p1.DeepCopy();
+            PersonForClone p2 = p1.ShallowCopy();
+            // Display values of p1, p2
+            Console.WriteLine("Original values of p1 and p2:");
+            Console.WriteLine("\n   p1 instance values: ");
+            DisplayValues(p1);
+            Console.WriteLine("\n   p2 instance values:");
+            DisplayValues(p2);
+
+            static void DisplayValues(PersonForClone p)
+            {
+                Console.WriteLine("      Name: {0:s}, Age: {1:d}", p.Name, p.Age);
+                Console.WriteLine("      Value: {0:d}", p.IdInfo.IdNumber);
+            }
+#endif
+            #endregion
             write("");
         }
     }
