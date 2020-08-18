@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Globalization;
+using System.Security;
 using System.Text;
 
 namespace Inheritance_Implementation
@@ -10,7 +12,7 @@ namespace Inheritance_Implementation
 
     #region For C# basic inheritance
 #if true
-    
+
     public class Species
     {
         public string FName { get; set; }
@@ -128,5 +130,103 @@ namespace Inheritance_Implementation
 
 #endif
     #endregion
+
+    #region For C# SEALING the Classes and methods
+#if true
+
+    public sealed class TheUnDerivable
+    {
+        public void test() => Console.WriteLine("No, free work from me go and get it yourself!!");
+    }
+
+#if false
+   // this Derived class can;t inherit BaseClass because it is sealed  
+       public class TryingToDoTheUndoable : TheUnDerivable
+    {
+        //some coding here
+    }
+#endif
+
+
+#endif
+
+    #endregion
+
+    #region For C# The SEALING a method
+#if true
+
+    public class TheBaseWithMethodToSeal
+    {
+        public virtual void test() => Console.WriteLine("No, I help only one class and not the whole world!!");
+    }
+
+    public class TheMethodSealingClass : TheBaseWithMethodToSeal
+    {
+        public sealed override void test()
+        {
+            Console.WriteLine("I am sealed now and ANYTHING DERIVING me cANNOT CHANGE MY STUFF. I am the boss from now");
+        }
+    }
+
+#if false
+    //to see the error turn the false to true on the line above!
+    public class MyClass : TheMethodSealingClass
+    {
+        public override void test()
+        {
+            Console.WriteLine("I am sealed now an");
+        }
+    }
+#endif
+#endif
+    #endregion
+
+    #region Constructors of Derived Classes
+#if true
+    /* This class will contain SELF-WRITTEN CONSTRUCTOR THUS WHEN INHERITING this class any where WE MUST CALL THE CONSTRUCTOR of this class 
+     * explicItly*/
+    public class Person
+    {
+        public string Fname { get; private set; }
+        public string Lname { get; private set; }
+
+        public Person(string fname, string lname)
+        {
+            Fname = fname;
+            Lname = lname;
+        }
+
+        public void Fullname(TheClassThatNeedsToCallTheBaseConstrutor obj) => Console.WriteLine($"Fname: {Fname}\nLname: {Lname}\nNationality: {obj.Nationality} ");
+    }
+
+    public class TheClassThatNeedsToCallTheBaseConstrutor : Person
+    {
+        public string Nationality { get; private set; }
+
+        /** Note how the base constructor is being called */
+        public TheClassThatNeedsToCallTheBaseConstrutor(string sName, string lName, string nationality) : base(sName, lName)
+        {
+            Nationality = nationality;
+        }
+
+        public Person personX { get; }
+    }
+
+    /**Now if try the flowing--not passing the base args to the base constructor when the base is inherited, it will give an error*/
+#if false
+    public class TestBaseConstrutor : Person
+    {
+        public int MyProperty { get; set; }
+
+        public TestBaseConstrutor(int myProperty)
+        {
+            MyProperty = myProperty;
+        }
+    }
+#endif
+#endif
+    #endregion
+
 }
+
 

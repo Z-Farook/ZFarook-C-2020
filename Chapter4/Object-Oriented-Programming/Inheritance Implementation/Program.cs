@@ -14,9 +14,14 @@ namespace Inheritance_Implementation
             ChildOfB g = new ChildOfB();
             g.PrintBaseMethod();
 
-            var p1 = new PizaTuna ();
+            var p1 = new PizaTuna();
             //var p1 = new PizaTuna(0.2, 0.5, .4 , .1);
             p1.PrintIngredient(p1);
+
+            var hiddenMthodEg = new TheMethodSealingClass();
+            hiddenMthodEg.test();
+            var person1 = new TheClassThatNeedsToCallTheBaseConstrutor("Zahid","Farook", "Dutch");
+            person1.Fullname(person1);
         }
 
     }
