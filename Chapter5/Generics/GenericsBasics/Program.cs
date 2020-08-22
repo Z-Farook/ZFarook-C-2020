@@ -66,9 +66,37 @@ namespace GenericsBasics
                 Console.Write(item  + " ");
             }
 #endif
+            // generic inheritance
+#if false
+            var t = new Derived<string>();
+            t.X = "Wohaha";
+            t.Y = "hello";
+            // t.Y = 13; /*error*/
+            // t.X = 13; /*error*/
+            var y = new DerivedWithDifferentBaseType<string, int>();
+            y.PropInDerived = "Test dance";
+            //y.PropInDerived = 12;/*error*/
+            Console.WriteLine($"assignNull: {y.SetThedefaultVar(101)}, PropInDerived: { y.PropInDerived}");/**This is powerful stuff see how the parameter type in this very method is determined */
+#endif
+            //generic constrains
+            //var u = new GenericClassWithInterFaceConstrain<string>(); /*Error since the string class does not implement the interface required */
+            //var u = new GenericClassWithInterFaceConstrain<int>(); /*Error since the int class does not implement the interface required */
+            //var u = new GenericClassWithInterFaceConstrain<object>(); /*Error since the object class does not implement the interface required */
+
+            /**Tda it works now since the class does inherits the required interface */
+            
+            var u = new ConstrainStuff<TheHardWay, IShowText>();
+            u.WonderLandString(u);
+
+
+            u.R(u);
+            //Partial specialization
+            var g = new EnglisBook<int>();
+            g.BName = "The heaven highway";
+            g.Bpage = 1;
+            g.PrintBookInfo(g);
 
             Console.WriteLine();
- 
         }
     }
 }
