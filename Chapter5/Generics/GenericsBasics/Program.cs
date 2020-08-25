@@ -79,24 +79,73 @@ namespace GenericsBasics
             Console.WriteLine($"assignNull: {y.SetThedefaultVar(101)}, PropInDerived: { y.PropInDerived}");/**This is powerful stuff see how the parameter type in this very method is determined */
 #endif
             //generic constrains
+
+#if false
             //var u = new GenericClassWithInterFaceConstrain<string>(); /*Error since the string class does not implement the interface required */
             //var u = new GenericClassWithInterFaceConstrain<int>(); /*Error since the int class does not implement the interface required */
             //var u = new GenericClassWithInterFaceConstrain<object>(); /*Error since the object class does not implement the interface required */
 
             /**Tda it works now since the class does inherits the required interface */
-            
+
             var u = new ConstrainStuff<TheHardWay, IShowText>();
             u.WonderLandString(u);
-
-
             u.R(u);
+
             //Partial specialization
             var g = new EnglisBook<int>();
             g.BName = "The heaven highway";
             g.Bpage = 1;
             g.PrintBookInfo(g);
+#endif
+            //static members in generics 
+#if false
+            //var i = new StaticDemo<string>();
+            //var s = new StaticDemo<int>();
+            var i = StaticDemo<string>.x = 4;/*Note that the int and string are not have any affect on the field!!!, Because the field has its own type defined explicitly and that is int */
+            var s = StaticDemo<int>.x = 4;   /*Note that the int and string are not have any affect on the field!!!, Because the field has its own type defined explicitly and that is int */
+            Console.WriteLine("i: " + i.GetType());
+            Console.WriteLine("s: " + s.GetType());
+#endif
+            // generic interfaces
+#if false
+            //StationCollection.PrintFakeChannels();
+
+            //COVARIANCE with generic interfaces
+            TreeCollection treesCollection = TreeCollection.GetTreeCollection();
+
+            /** The magic of OUT keyword is to be seen in the next two lines*/
+
+            IPlants<Flower> flower = treesCollection;  /*Note how we are going form more specific to more general*/
+
+            IPlants<Plant> plant = flower; /*Note how we are going form more specific to more general*/
+
+            for (int i = 0; i < plant.Count; i++)
+            {
+                /**Note you are calling the THIS[INT INDEX] method defined int the Flower class which RETURNS a Flower record AT INDEX I
+                 * Each time a record is retrieved then the WRITELINE is and OFF-COURSE SINCE THE ARGUMENT TO IT IS A WHOLE OBJECT it goes to fire the overridden 
+                 * ToString that is defined in some class in the hierarchy!!! */
+                Console.WriteLine(treesCollection[i]);
+            }
+
+            //CONTRA-VARIANCE with Generic Interfaces
+            IAnimals<Animal> quadruped = Zoo.GetAnimalCollection();
+            IAnimals<Quadruped> genericToSpecific = quadruped; //from more GENERIC TO more SPECIFIC
+
+            Animal[] zoodata = Zoo.GetAnimal;
+            quadruped.PrintPalntInfo(zoodata);
+#endif
+            //Nullable<int> i; ==> is same as int? i ;
+
+            int? x1 = ATest.GetNullableType(12);
+            int? x2 = ATest.GetNullableType(null);
+            int? x3 = x1 + x2;
+            Console.WriteLine("X3: " + (x3.HasValue ? x3.Value : x3.GetValueOrDefault()));
+             
+            
+          
 
             Console.WriteLine();
+
         }
     }
 }
