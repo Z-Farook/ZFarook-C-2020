@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -59,12 +60,13 @@ namespace GenericsBasics
         public void WonderLandString(ConstrainStuff<T1, TIx> obj) => Console.WriteLine(
             $"The class: GenericClassWithInterFaceConstrain is to be only instantiated if the " +
             $"type argument was implementing IShowText. So, it did and you can see the result of the interface method here:\n" +
-            $"{obj.PrintStuff()}\n"
+            $"{obj.PrintStuff()}\n" +
+            $"The static field value: {TheHardWay.x}"
             );
 
         public void R(ConstrainStuff<T1, TIx> obj)
         {
-            Console.WriteLine("test: " + obj.GetHashCode());
+            Console.WriteLine("\ntest: " + obj.GetHashCode());
         }
     }
 
@@ -93,8 +95,12 @@ namespace GenericsBasics
 
     #region/*============================================ Generic's Static Members=======================================================*/
 
-
-
-
+    /**
+     * Static members of generic classes are shARED WITH ONLY ONE INSTANTIATION of the CLASS, and they require special attention
+     * class StaticDemo<T> if used with a string type and an int type, then two sets of static fields exist */
+    public class StaticDemo<T>
+    {
+        public static int x;
+    }
     #endregion
 }
