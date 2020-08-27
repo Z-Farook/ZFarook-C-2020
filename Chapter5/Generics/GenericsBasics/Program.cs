@@ -135,14 +135,52 @@ namespace GenericsBasics
             quadruped.PrintPalntInfo(zoodata);
 #endif
             //Nullable<int> i; ==> is same as int? i ;
-
+#if false
             int? x1 = ATest.GetNullableType(12);
             int? x2 = ATest.GetNullableType(null);
             int? x3 = x1 + x2;
             Console.WriteLine("X3: " + (x3.HasValue ? x3.Value : x3.GetValueOrDefault()));
-             
-            
-          
+#endif
+            //generic methods
+#if false
+            int i = 4;
+            int j = 5;
+            MethodPlaceHolder.Swap<int>(ref i, ref j);
+
+            /**Note the LIst implement some interface and one of those is IEnumerable 
+             * which is the type of parameter of our method PrintAnimal
+             * */
+            var animalList = new List<Animal>() {
+                new Animal{Name = "A" , Color = "B"},
+                new Animal{Name = "C" , Color = "D"},
+                new Animal{Name = "E" , Color = "F"}
+             };
+            //MethodPlaceHolder.PrintAnimalSimple(animalList);
+
+            var sampleList = new List<MethodPlaceHolder>() {
+                new MethodPlaceHolder{Age = "A1" , Height = 12},
+                new MethodPlaceHolder{Age = "A2" , Height = 11},
+                new MethodPlaceHolder{Age = "A3" , Height = 10},
+             };
+
+            MethodPlaceHolder.PrintAnimal1<MethodPlaceHolder>(sampleList);
+
+           var res =  MethodPlaceHolder.PrintAnimal2<MethodPlaceHolder, decimal>(sampleList, (sampleList,sum)=> sum+=sampleList.Height);
+            Console.WriteLine(res);
+
+#endif
+            //generic methods specialization 
+#if true 
+            MethodSpecialisationePlaceHolder.Test1(12);
+            MethodSpecialisationePlaceHolder.Test2<int>(30);
+            MethodSpecialisationePlaceHolder.Test2("Hello"); // The same method without type parameter
+            MethodSpecialisationePlaceHolder.Test3<int, float>(13, 12.0f);
+            MethodSpecialisationePlaceHolder.Test3(13, 134.0f); //The same method without type parameter
+            MethodSpecialisationePlaceHolder.Test4<string>("Test", 12);
+            MethodSpecialisationePlaceHolder.Test4("Test2", 12); //The same method without type parameter
+            MethodSpecialisationePlaceHolder.YourSurprise<decimal>(12.000012m);
+            MethodSpecialisationePlaceHolder.YourSurprise(12.000010002m); //The same method without type parameter
+#endif
 
             Console.WriteLine();
 
