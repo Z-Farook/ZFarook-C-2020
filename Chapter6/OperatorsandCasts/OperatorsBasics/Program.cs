@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace OperatorsBasics
@@ -19,12 +20,18 @@ namespace OperatorsBasics
             OperatorHolder.TheUncheckedoper();
 #endif
 
-#if true
-
+#if false
+            AsAndIsHolder.TheIsOper();
+            AsAndIsHolder.CreatAvarUsingIsOper(new AsAndIsHolder());
+            Console.WriteLine();
+            AsAndIsHolder.TheAsOper();
 #endif
 
+#if false
+            SizeOfHolder.PrintBytes();
+#endif
             #endregion
-
+        
             Console.WriteLine();
 
         }
