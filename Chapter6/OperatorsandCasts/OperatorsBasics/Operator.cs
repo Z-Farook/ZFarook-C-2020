@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace OperatorsBasics
 {
+    // The classes names indicates what they are possibly holding
     public class OperatorHolder
     {
         public static int temp = 18;
@@ -69,7 +71,7 @@ namespace OperatorsBasics
                 $" that {"is not between the boundary of the byte type".ToUpper()}, but you lose data.\n");
 
 
-            /**This will intentional ignore the data loss */
+            /**This will intentionally ignore the data loss */
             unchecked
             {
                 x += 1;
@@ -77,6 +79,88 @@ namespace OperatorsBasics
 
             Console.WriteLine("Final res: " + x);
 
+        }
+    }
+
+    // The classes names indicates what they are possibly holding
+    public class AsAndIsHolder
+    {
+        public string testi = "Good stuff";
+        public static void TheIsOper()
+        {
+            int f = 10;
+#pragma warning disable CS0183 
+            // 'is' expression's given expression is always of the provided type
+            if (f is object)
+#pragma warning restore CS0183
+            {
+                Console.WriteLine("f is an object");
+            }
+
+            Console.WriteLine();
+            int i = 42;
+            if (i is 42) // not that here we are CHECKING the literal 42, in other words a CONSTANT not an object 
+            {
+                Console.WriteLine("i has the value 42");
+            }
+            object o = null;
+            if (o is null)
+            {
+                Console.WriteLine("o is null");
+            }
+        }
+        public static void CreatAvarUsingIsOper(object obj)
+        {
+            if (obj is AsAndIsHolder phi)
+                Console.WriteLine($"\nis operator passed because the obj was indeed the type of: {phi.GetType().Name}");
+        }
+        public static void TheAsOper()
+        {
+            object[] obj = new object[5];
+            obj[0] = new AsAndIsHolder();
+            obj[1] = new AsAndIsHolder();
+            obj[2] = "C#";
+            obj[3] = 334.5;
+            obj[4] = null;
+
+            for (int j = 0; j < obj.Length; ++j)
+            {
+                // using AS operator 
+                string str = obj[j] as string; /**Note when object at index j can't be converted then IT GIVES NULL back  */
+
+                if (str == null)
+                    Console.WriteLine($"[{j}]: {str} can't be converted to  String\n");
+
+                if (str != null)
+                {
+                    Console.WriteLine($"[{j} : '{str}' is a string\n");
+                }
+                else
+                {
+                    Console.WriteLine($"      Class or value: {obj[j]}, is not a string\n");
+                }
+            }
+
+        }
+    }
+    public struct SizeOfHolder
+    {
+        public SizeOfHolder(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+        public int X { get; }
+        public int Y { get; }
+
+        public static void PrintBytes()
+        {
+            /*By DEFAULT, UNSAFE code is NOT ALLOWED. You need to SPECIFY the
+            AllowUnsafeBlocks IN THE CSPROJ project file.*/
+            unsafe
+            {
+                Console.WriteLine($"Point size in bytes: {sizeof(SizeOfHolder)}");
+            }
         }
     }
 }
