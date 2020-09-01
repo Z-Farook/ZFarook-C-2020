@@ -31,7 +31,20 @@ namespace OperatorsBasics
             SizeOfHolder.PrintBytes();
 #endif
             #endregion
-        
+
+            #region For C# Type safety
+#if true
+
+            TypeSafety.TestTypeCasting();
+            double[] Prices = { 25.30, 26.20, 27.40, 30.00 };
+            var h = new TypeSafety();
+            h.Description = "Hello there.";
+            h.ApproxPrice = (int)(Prices[0] + 0.5);
+            Console.WriteLine(h.ApproxPrice);
+#endif
+            #endregion
+
+
             Console.WriteLine();
 
         }
