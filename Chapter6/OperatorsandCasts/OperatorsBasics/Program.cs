@@ -32,9 +32,8 @@ namespace OperatorsBasics
 #endif
             #endregion
 
-            #region For C# Type safety
-#if true
-
+            #region For C# Type safety (Explicit type casting)
+#if false
             TypeSafety.TestTypeCasting();
             double[] Prices = { 25.30, 26.20, 27.40, 30.00 };
             var h = new TypeSafety();
