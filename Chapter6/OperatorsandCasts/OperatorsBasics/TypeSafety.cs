@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OperatorsBasics
+namespace OperatorsAndCasts
 {
     class TypeSafety
     {

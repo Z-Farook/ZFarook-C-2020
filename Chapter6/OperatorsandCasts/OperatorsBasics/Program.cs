@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace OperatorsAndCasts
 {
@@ -43,8 +44,28 @@ namespace OperatorsAndCasts
 #endif
             #endregion
 
+            #region For C# boxing and unboxing 
+#if false
+            BoxUnBox.Test();
+#endif
+            #endregion
 
+            #region For C# COMPARING OBJECTS FOR EQUALITY
+#if true
+            B.Test();
+            Point point2D = new Point(5, 5);
+            Point3D point3Da = new Point3D(5, 5, 2);
+            Console.WriteLine("{0} = {1}: {2}",
+                    point2D, point3Da, point2D.Equals(point2D));
+            
+            var a = new StrA();
+            var b = new StrB();
+            StrB.ValueTypeComparison(a, b);
             Console.WriteLine();
+#endif
+            #endregion
+
+
 
         }
     }
