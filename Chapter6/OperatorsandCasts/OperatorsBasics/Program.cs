@@ -51,7 +51,7 @@ namespace OperatorsAndCasts
             #endregion
 
             #region For C# COMPARING OBJECTS FOR EQUALITY
-#if true
+#if false
             B.Test();
             Point point2D = new Point(5, 5);
             Point3D point3Da = new Point3D(5, 5, 2);
@@ -62,6 +62,27 @@ namespace OperatorsAndCasts
             var b = new StrB();
             StrB.ValueTypeComparison(a, b);
             Console.WriteLine();
+#endif
+            #endregion
+
+            #region For C# arithmetic operators overloading
+#if false
+            AdditionHolder adh = new AdditionHolder(12, 1.0);
+
+            Console.WriteLine("The result without operator loading when: AgeDeterminer(13, adh)");
+            var res = AdditionHolder.AgeDeterminer(13, adh);
+            Console.WriteLine((res.age, res.grownedHeight));
+
+            Console.WriteLine("The result with operator loading when:  13 + adh =");
+            var res2 = 13 + adh;
+            Console.WriteLine((res2.age, res2.grownedHeight));
+
+            var thrd1 = new ThreeDMoves(1.0, 2.0, 3.0);
+            var thrd2 = new ThreeDMoves(2.0, 3.0, 4.0);
+            var thrd3 = thrd1 *= 2;
+            var thrd4 = thrd1 * thrd3;
+
+            Console.WriteLine($"thrd3: {thrd3}\nthrd4: {thrd4}");
 #endif
             #endregion
 
