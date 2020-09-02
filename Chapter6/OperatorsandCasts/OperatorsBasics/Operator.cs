@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace OperatorsBasics
+namespace OperatorsAndCasts
 {
     // The classes names indicates what they are possibly holding
     public class OperatorHolder
