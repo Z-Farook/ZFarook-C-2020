@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Xml.Linq;
 
 namespace OperatorsAndCasts
 {
@@ -86,6 +83,29 @@ namespace OperatorsAndCasts
 #endif
             #endregion
 
+            #region For C# Overloading the Comparison Operators
+#if true
+            var i1 = new DayTemperature(25, 19);
+            var i2 = new DayTemperature(25, 19);
+            var i3 = new DayTemperature(125, 119);
+
+            DayTemperature.IsTempSame(i1, i1);
+            var resOfEqualOperator = i1 == i2;
+            var resOfNotEqualOperator = i1 != i2;
+
+            i1.Equals(i2);
+
+            i1.GetHashCode();
+            i2.GetHashCode();
+            i3.GetHashCode();
+
+            Console.WriteLine("======================================================================");
+            DayTemperature.IsTempSame(i1,i3);
+            var resOfEqualOperator1 = i1 == i3;
+            var resOfNotEqualOperato2r = i1 != i3;
+#endif
+            #endregion
+            Console.WriteLine();
 
 
         }

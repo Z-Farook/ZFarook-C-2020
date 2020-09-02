@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OperatorsAndCasts
 {
+    #region For C# arithmetic operators overloading
+#if true
     public class AdditionHolder
     {
         public AdditionHolder(int age, double height)
@@ -54,8 +54,83 @@ namespace OperatorsAndCasts
                          */
         public static double operator *(ThreeDMoves left, ThreeDMoves right) =>
           left.X * right.X + left.Y * right.Y + left.Z * right.Z;
-    
+
         /*In the same way we can use other arithmetic operators can be overloaded like: /, -   */
     }
-    
+#endif
+    #endregion
+
+    #region For C# Comparison operators overloading
+#if true
+    /*Note the interface: IEquatable type argument is our own type: DayTemperature. This interface forces us to implement the
+     * STRONGLY TYPED VERSION of the EQUALS METHOD that IS DEFINED BY the BASE CLASS OBJECT*/
+    public struct DayTemperature : IEquatable<DayTemperature>
+    {
+        public int Day { get; private set; }
+        public int Night { get; private set; }
+
+        public DayTemperature(int day, int night)
+        {
+            Day = day;
+            Night = night;
+        }
+
+        public static bool IsTempSame(DayTemperature d1, DayTemperature d2)
+        {
+            /*This will ALWAYS return FALSE IF THE arguments TYPE are VALUE TYPE BECAUSE OF THE BOXING AND UNBOXING*/
+            if (ReferenceEquals(d1, d2)) return true;
+
+            /**This is used to determine the result when arguments are value types */
+            var res = d1.Night == d2.Night && d1.Day == d2.Day;
+            Console.WriteLine($"IsTempSame: {res}");
+            return res;
+        }
+
+        public static bool operator ==(DayTemperature d1, DayTemperature d2)
+        {
+            if (ReferenceEquals(d1, d2))
+                return true;
+            var res = d1.Night == d2.Night && d1.Day == d2.Day;
+            Console.WriteLine($"The operator == resulted in: {res}");
+            return res;
+        }
+
+        public static bool operator !=(DayTemperature d1, DayTemperature d2)
+        {
+            /*Note the == is calling the overload defined above and to the result of that operator
+              * we add the operator: ! So, if the result was true it become false and the other way around applies too*/
+            Console.WriteLine($"The operator != called  ==(DayTemperature d1, DayTemperature d2) and the MODIFIED its RESULT BY THE NOT OPERATOR !");
+            bool res = !(d1 == d2);
+            Console.WriteLine($"So, The operator != resulted in: {res}");
+            return res;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            /*Note the == is calling the overload defined above. The keyword this is the first argument to the operator overload*/
+            return this == (DayTemperature)obj;
+        }
+
+        public override int GetHashCode()
+        {
+            var res = Day.GetHashCode() ^ Night.GetHashCode();
+            Console.WriteLine($"HasCode is: {res}");
+            return res;
+        }
+
+        /**NOte, this method is different then: public override bool Equals(object obj) */
+        public bool Equals(DayTemperature other)
+        {
+            /*Note the == is calling the overload defined above. The keyword this is the first argument to the operator overload*/
+            bool res = this == other;
+            Console.WriteLine($"The: Equals(DayTemperature other) returned: {res}");
+            return res;
+        }
+    }
+#endif
+    #endregion
+
 }
