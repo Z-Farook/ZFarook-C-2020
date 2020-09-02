@@ -15,7 +15,7 @@ namespace OperatorsAndCasts
             Console.WriteLine("A == B: " + r);
         }
     }
-
+#pragma warning disable CS0659
     class Point
     {
         /*Here the get hasCode is intentionally not overridden so compiler gives you a waring
