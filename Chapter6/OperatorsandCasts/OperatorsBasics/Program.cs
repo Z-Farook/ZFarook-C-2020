@@ -84,7 +84,7 @@ namespace OperatorsAndCasts
             #endregion
 
             #region For C# Overloading the Comparison Operators
-#if true
+#if false
             var i1 = new DayTemperature(25, 19);
             var i2 = new DayTemperature(25, 19);
             var i3 = new DayTemperature(125, 119);
@@ -100,11 +100,29 @@ namespace OperatorsAndCasts
             i3.GetHashCode();
 
             Console.WriteLine("======================================================================");
-            DayTemperature.IsTempSame(i1,i3);
+            DayTemperature.IsTempSame(i1, i3);
             var resOfEqualOperator1 = i1 == i3;
             var resOfNotEqualOperato2r = i1 != i3;
 #endif
             #endregion
+
+            #region For C# USER-DEFINED CASTS (implicit and explicit) it's kind like a operator overloading but not really
+#if true
+            var toBeConverted = new TheDestinationType(101);
+            Console.WriteLine($"The original type of toBeConverted: {toBeConverted.GetType().Name}");
+            var converted = (TheSourceType)toBeConverted;
+            Console.WriteLine($"The destination type of toBeConverted: {converted.GetType().Name}\n");
+            
+            Console.WriteLine($"//From *heSourceType type  to short ");
+            short shortCasting = (short )converted;
+            Console.WriteLine($"The destination type of shortCasting: {shortCasting.GetType().Name}");
+
+            Console.WriteLine($"//From *short type  to double  ");
+           var shortTodouble =  (double)shortCasting;
+            Console.WriteLine($"The destination type of shortTodouble: {shortTodouble.GetType().Name}");
+#endif
+            #endregion
+
             Console.WriteLine();
 
 

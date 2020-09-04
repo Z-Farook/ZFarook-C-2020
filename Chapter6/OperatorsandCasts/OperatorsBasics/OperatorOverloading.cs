@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace OperatorsAndCasts
 {
@@ -133,4 +134,53 @@ namespace OperatorsAndCasts
 #endif
     #endregion
 
+    #region For C# Cast operator overloading: 
+#if true
+    public class TheSourceType
+    {
+        public int TestPropA { get; }
+
+        public TheSourceType(int testProp)
+        {
+            TestPropA = testProp;
+        }
+
+        public static explicit operator short(TheSourceType obj)
+        {
+            return (short) obj.TestPropA;
+        }
+
+        /**Same can be done for other any sensible type casting, but see the next comment and read more about the limitations of casting*/
+
+        /**you cannot also define the same cast inside the other class turn the #IF TO TRUE TO SEE THE ERROr */
+#if false 
+        //If you use the same casting two time! the error will be: Ambiguous user defined conversions *
+        public static explicit operator TheSourceType(TheDestinationType mysourceObj)
+        {
+            var convertedObj = new TheSourceType(mysourceObj.TestPoprB);
+            return convertedObj;
+        }
+#endif
+
+    }
+
+    public class TheDestinationType
+    {
+        public int TestPoprB { get; }
+
+        public TheDestinationType(int testPoprB)
+        {
+            TestPoprB = testPoprB;
+        }
+
+
+        public static explicit operator TheSourceType(TheDestinationType mysourceObj)
+        {
+            var convertedObj = new TheSourceType(mysourceObj.TestPoprB);
+            return convertedObj;
+        }
+    }
+
+#endif
+    #endregion
 }
