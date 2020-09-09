@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BasicsOfArrays
 {
-    #region implicit  and explicit IEnumerator
+    #region implicit and explicit IEnumerator
     /**When we use the for each statement then the compiler do some calling to different thing one of those is the method called: GetEnumerator() */
 
 
