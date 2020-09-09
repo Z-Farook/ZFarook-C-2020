@@ -76,8 +76,34 @@ namespace BasicsOfArrays
 #endif
             #endregion
 
+            #region For C# Enumerators
+#if false
+            var arr = new int[] { 1, 2, 3, 4, 5, 6 };
+            var mgh = new TheMigicHolder(arr);
+            Console.WriteLine("// The default IEnumerator type with foreach statement");
 
-            Console.WriteLine();
+            foreach (var item in mgh)
+            {
+                Console.Write(item + ", ");
+            }
+            Console.WriteLine("\n");
+
+            var compilerMagic = new EnumeratorsPalceHolder();
+            Console.WriteLine("//  Compiler generated a *yield type* behind the scene and give us:");
+            foreach (var item in compilerMagic)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\n\n//The NOT default IEnumerator type with foreach statement");
+            foreach (var item in mgh.Not_Default_Iterator_For_ForEach())
+            {
+                Console.Write(item + ", ");
+
+            }
+#endif
+            #endregion
+
+            Console.WriteLine("\n");
 
         }
     }
