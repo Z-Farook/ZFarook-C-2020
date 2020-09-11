@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,7 +8,7 @@ namespace BasicsOfArrays
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] argsm)
         {
             Console.WriteLine();
 
@@ -103,8 +105,51 @@ namespace BasicsOfArrays
 #endif
             #endregion
 
-            Console.WriteLine("\n");
+            #region For C# STRUCTURAL COMPARISON 
+#if true
+            //using IStructuralEquatable for comparison of content in objects
 
+            var cir = new Circle() { Diameter = 10, Radius = 20 };
+            Circle[] cir1 = { new Circle() { Diameter = 30, Radius = 40 }, cir };
+            Circle[] cir2 = { new Circle() { Diameter = 30, Radius = 40 }, cir };
+
+            //This Equal is an overload of the obejct.Equals and it is comparing the references
+            if (cir1 == cir2)
+                Console.WriteLine("The same reference");
+            else
+                Console.WriteLine("The reference cir1 == cir2 wasn't same ");
+
+            //this Equal is from the obejct.Equals it is overridden but still behaves same as the base
+            if (!cir1.Equals(cir2))
+                Console.WriteLine("*!cir1.Equals(cir2)* returns false because not the same reference\n");
+
+            /* This, Equal, is from the interface IStructuralEquatable.Equals! Which is implemented through the EqualityComparer<Circle> class (below in the if statement)
+             * by implementing the Equal of IEquatable<T> interface which we have done ourself.
+             * Notice we have converted the person1 array to IStructuralEquatable type using the as operator */
+
+            if ((cir1 as IStructuralEquatable).Equals(cir2, EqualityComparer<Circle>.Default))
+            {
+                Console.WriteLine("The content of cir1 and cir2 was same");
+            }
+
+            //using IEqualityComparer<T> directly for comparison of content in objects
+            var r1 = new Rectangle2() { Heigth = 1, Width = 2 };
+            var r2 = new Rectangle2() { Heigth = 1, Width = 2 };
+            var arr2 = new Rectangle2[] { r1, r2 };
+            Console.Write($"The ids made and incremented by 1 automatically result => ");
+            foreach (var item in arr2)
+            {
+                Console.Write($" {item.Id} ,");
+            }
+            Console.WriteLine("\n");
+            Console.WriteLine($"Comparing only the reference results in => {r1.Equals(r2)}");
+            var comparer = new RectangleComparer();
+            Console.WriteLine($"Comparing the content reference results in => {comparer.Equals(r1, r2)}");
+            Console.WriteLine($"Get some hashcode for r1 => {comparer.GetHashCode(r1)}");
+            Console.WriteLine($"Get some hashcode for r2 => {comparer.GetHashCode(r2)}");
+#endif
+            #endregion
+            Console.WriteLine("\n");
         }
     }
 }
