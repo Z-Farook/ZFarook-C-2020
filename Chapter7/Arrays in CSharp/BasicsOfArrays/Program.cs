@@ -159,6 +159,14 @@ namespace BasicsOfArrays
 #endif
             #endregion
 
+            #region For C# ArrayPool<T>
+#if true
+            PoolHolder.CreatArrayPoolTest();
+            PoolHolder.ArrayPoolUsinSharedProp();
+
+#endif
+            #endregion
+
             Console.WriteLine("\n");
         }
     }
