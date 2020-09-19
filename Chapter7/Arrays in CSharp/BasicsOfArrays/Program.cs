@@ -106,7 +106,7 @@ namespace BasicsOfArrays
             #endregion
 
             #region For C# STRUCTURAL COMPARISON 
-#if true
+#if false
             //using IStructuralEquatable for comparison of content in objects
 
             var cir = new Circle() { Diameter = 10, Radius = 20 };
@@ -146,9 +146,19 @@ namespace BasicsOfArrays
             var comparer = new RectangleComparer();
             Console.WriteLine($"Comparing the content reference results in => {comparer.Equals(r1, r2)}");
             Console.WriteLine($"Get some hashcode for r1 => {comparer.GetHashCode(r1)}");
-            Console.WriteLine($"Get some hashcode for r2 => {comparer.GetHashCode(r2)}");
+            Console.WriteLine($"Get some hashcode for r2 => {comparer.GetHashCode(r2)}\n");
 #endif
             #endregion
+
+            #region For C# Span<T>s
+#if false
+            SpanExperimentHolder.CreateSpane();
+            SpanExperimentHolder.MakeSliceOfArr();
+            SpanExperimentHolder.ChangeArrValWithoutIndexer();
+            SpanExperimentHolder.MakeReadOnlySpan();
+#endif
+            #endregion
+
             Console.WriteLine("\n");
         }
     }
